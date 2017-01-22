@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="8dp"
+        android:id="@+id/phoneLayout">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_label_size"
+            android:text="@string/to"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:paddingRight="12dp"
+            android:gravity="right"
+            android:textSize="@dimen/text_label_size"
+            android:id="@+id/phoneNumber"
+            android:hint="Phone number"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/keyLayout"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="8dp"
+        android:layout_below="@id/phoneLayout">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_label_size"
+            android:text="@string/yours_key"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_label_size"
+            android:layout_marginLeft="4dp"
+            android:paddingRight="12dp"
+            android:gravity="right"
+            android:id="@+id/keyET"
+            android:hint="secret"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/MessageLabel"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:text="Your secret message"
+        android:textSize="@dimen/big_text_size"
+        android:layout_below="@id/keyLayout"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/send"
+        android:id="@+id/sendBtn"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_alignParentRight="true"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/MessageLabel"
+        android:layout_above="@id/sendBtn"
+        android:hint="@string/write_sec_msg"
+        android:padding="4dp"
+        android:layout_margin="8dp"
+        android:textAlignment="center"
+        android:id="@+id/secretMessageET"
+        android:background="@color/white"
+        android:gravity="top"/>
+
+
+
+</RelativeLayout>

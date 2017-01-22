@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SecureSMS</string>
+    <string name="add_contact">Add Contact</string>
+    <string name="new_msg">New Message</string>
+    <string name="history">History</string>
+    <string name="to">To:</string>
+    <string name="yours_key">Yours key:</string>
+    <string name="write_sec_msg">Write your secret message here</string>
+    <string name="send">Send</string>
+</resources>
