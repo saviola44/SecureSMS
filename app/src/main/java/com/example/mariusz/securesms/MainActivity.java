@@ -30,4 +30,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, NewMessageActivity.class);
         startActivity(intent);
     }
+
+    @OnClick(R.id.addContact)
+    public void addContactClicked(){
+        Intent intent = new Intent(this, NewContact.class);
+        startActivity(intent);
+    }
 }

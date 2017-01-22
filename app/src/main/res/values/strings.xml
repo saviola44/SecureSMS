@@ -7,4 +7,9 @@
     <string name="yours_key">Yours key:</string>
     <string name="write_sec_msg">Write your secret message here</string>
     <string name="send">Send</string>
+    <string name="contact_name">Contact name</string>
+    <string name="phone_number">Phone number</string>
+    <string name="secret">Secret</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
 </resources>

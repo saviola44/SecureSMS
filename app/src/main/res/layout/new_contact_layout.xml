@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/contactLayout">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_label_size"
+            android:text="@string/contact_name"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:paddingRight="12dp"
+            android:gravity="right"
+            android:textSize="@dimen/text_label_size"
+            android:id="@+id/contactNameET"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:id="@+id/phoneLayout"
+        android:layout_below="@id/contactLayout">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_label_size"
+            android:text="@string/phone_number"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:paddingRight="12dp"
+            android:textSize="@dimen/text_label_size"
+            android:gravity="right"
+            android:id="@+id/phoneNumberET"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:id="@+id/keyLayout"
+        android:layout_below="@id/phoneLayout">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_label_size"
+            android:text="@string/yours_key"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:paddingRight="12dp"
+            android:gravity="right"
+            android:textSize="@dimen/text_label_size"
+            android:id="@+id/yoursKeyET"
+            android:hint="@string/secret"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonsLayout"
+        android:weightSum="10"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/keyLayout"
+        android:layout_centerHorizontal="true">
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:text="@string/cancel"
+            android:id="@+id/cancelBtn"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:text="@string/save"
+            android:id="@+id/saveBtn"/>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
