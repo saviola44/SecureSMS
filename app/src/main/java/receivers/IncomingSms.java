@@ -11,6 +11,8 @@ import android.telephony.SmsMessage;
 import android.util.Log;
 import android.widget.Toast;
 
+import utils.CryptoUtil;
+
 /**
  * Created by mariusz on 23.01.17.
  */
@@ -45,9 +47,17 @@ public class IncomingSms extends BroadcastReceiver {
         else{
             if (Telephony.Sms.Intents.SMS_RECEIVED_ACTION.equals(intent.getAction())) {
                 for (SmsMessage smsMessage : Telephony.Sms.Intents.getMessagesFromIntent(intent)) {
-                    String messageBody = smsMessage.getMessageBody();
+                    String messageSecretBody = smsMessage.getMessageBody();
                     String sender = smsMessage.getOriginatingAddress();
-                    Log.d("jestem", "odebrałem sms " + sender + messageBody);
+                    try {
+                        String messageEncoded = CryptoUtil.decryptData("mistrz".toCharArray(), messageSecretBody);
+                        Log.d("jestem", "odebrałem sms " + sender);
+                        Log.d("jestem", "szyfr = " + messageSecretBody);
+                        Log.d("jestem", "odszyfrowane " + messageEncoded);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                 }
             }
         }
