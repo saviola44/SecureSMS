@@ -12,4 +12,9 @@
     <string name="secret">Secret</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
+    <string name="invalid_phone_number">given phone number is invalid</string>
+    <string name="invalid_key">The key must have at least 5 characters or greater</string>
+    <string name="invalid_contact_name">Contact name cannot be empty</string>
+    <string name="contact_exist">Contact already exist</string>
+    <string name="contacts">Contacts</string>
 </resources>

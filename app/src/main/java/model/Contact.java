@@ -1,9 +1,11 @@
 package model;
 
+import com.orm.SugarRecord;
+
 /**
  * Created by mariusz on 22.01.17.
  */
-public class Contact {
+public class Contact extends SugarRecord {
     String name;
     String phoneNumber;
     String key;

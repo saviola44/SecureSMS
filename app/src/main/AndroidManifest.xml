@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mariusz.securesms">
+    <uses-permission android:name="android.permission.RECEIVE_SMS"></uses-permission>
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.SEND_SMS"></uses-permission>
 
     <application
         android:allowBackup="true"
@@ -21,6 +24,14 @@
             android:screenOrientation="portrait"></activity>
         <activity android:name=".NewContact"
             android:screenOrientation="portrait"/>
+        <activity android:name=".ContactsActivity"
+            android:screenOrientation="portrait"/>
+
+        <receiver android:name="receivers.IncomingSms">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

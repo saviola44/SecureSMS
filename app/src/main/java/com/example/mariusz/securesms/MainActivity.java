@@ -36,4 +36,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, NewContact.class);
         startActivity(intent);
     }
+
+    @OnClick(R.id.contacts)
+    public void onContactsClicked(){
+        Intent intent = new Intent(this, ContactsActivity.class);
+        startActivity(intent);
+    }
 }
