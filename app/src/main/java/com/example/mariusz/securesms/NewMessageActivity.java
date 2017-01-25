@@ -21,6 +21,8 @@ import javax.crypto.spec.SecretKeySpec;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import model.Contact;
+import model.Message;
 import utils.ContactsValidation;
 import utils.CryptoUtil;
 
@@ -28,7 +30,7 @@ import utils.CryptoUtil;
  * Created by mariusz on 22.01.17.
  */
 public class NewMessageActivity extends AppCompatActivity {
-    @Bind(R.id.phoneNumber)
+    @Bind(R.id.phone)
     EditText phoneNumberET;
     @Bind(R.id.keyET)
     TextView keyET;
@@ -64,10 +66,20 @@ public class NewMessageActivity extends AppCompatActivity {
             try {
                 String secretMessage = CryptoUtil.encryptClearText(key.toCharArray(), message);
                 smsManager.sendTextMessage(phoneNumber, null, secretMessage, null, null);
+                saveInDatabase(phoneNumber, secretMessage);
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
         }
+    }
+
+    private void saveInDatabase(String phoneNumber, String secretMessage){
+        Contact contact = Contact.getContactByPhone(phoneNumber);
+        if(contact==null){
+            contact = new Contact(getString(R.string.unknown), phoneNumber);
+        }
+        Message msg = new Message(secretMessage, contact, true);
+        msg.save();
     }
 }

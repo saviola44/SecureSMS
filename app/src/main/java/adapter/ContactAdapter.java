@@ -46,7 +46,8 @@ public class ContactAdapter extends ArrayAdapter {
         }
         Contact contact = contacts.get(position);
         holder.contactName.setText(contact.getName());
-        holder.phoneNumber.setText(contact.getPhoneNumber());
+        holder.phoneNumber.setText(contact.getPhone());
+        holder.setPosition(position);
         return row;
     }
 
@@ -74,9 +75,19 @@ public class ContactAdapter extends ArrayAdapter {
         TextView contactName;
         @Bind(R.id.phoneNumber)
         TextView phoneNumber;
+        int position;
+
+        public int getPosition() {
+            return position;
+        }
+
+        public void setPosition(int position) {
+            this.position = position;
+        }
 
         public ContactHolder(View view) {
             ButterKnife.bind(this, view);
         }
+
     }
 }

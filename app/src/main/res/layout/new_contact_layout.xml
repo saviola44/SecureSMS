@@ -34,14 +34,31 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_label_size"
             android:text="@string/phone_number"/>
-        <EditText
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="4dp"
-            android:paddingRight="12dp"
-            android:textSize="@dimen/text_label_size"
-            android:gravity="right"
-            android:id="@+id/phoneNumberET"/>
+            android:gravity="center"
+            android:orientation="horizontal">
+            <EditText
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:paddingRight="12dp"
+                android:text="@string/_48"
+                android:textSize="@dimen/text_label_size"
+                android:id="@+id/phoneNumberPrefixET"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:paddingRight="12dp"
+                android:layout_toRightOf="@id/phoneNumberPrefixET"
+                android:textSize="@dimen/text_label_size"
+                android:gravity="right"
+                android:id="@+id/phoneNumberET"/>
+
+        </RelativeLayout>
+
     </LinearLayout>
 
     <LinearLayout

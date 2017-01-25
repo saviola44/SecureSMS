@@ -22,7 +22,7 @@
             android:paddingRight="12dp"
             android:gravity="right"
             android:textSize="@dimen/text_label_size"
-            android:id="@+id/phoneNumber"
+            android:id="@+id/phone"
             android:hint="Phone number"/>
     </LinearLayout>
     <LinearLayout

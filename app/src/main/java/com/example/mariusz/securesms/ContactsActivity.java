@@ -1,8 +1,14 @@
 package com.example.mariusz.securesms;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.List;
@@ -29,5 +35,16 @@ public class ContactsActivity extends AppCompatActivity {
         contacts = Contact.listAll(Contact.class);
         contactAdapter = new ContactAdapter(this, R.layout.row_contact_layout, contacts);
         contactListView.setAdapter(contactAdapter);
+
+        contactListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Contact contact = contacts.get(position);
+                Intent intent = new Intent(getApplicationContext(), ConversationActivity.class);
+                intent.putExtra("contact", contact);
+                startActivity(intent);
+            }
+        });
     }
+
 }

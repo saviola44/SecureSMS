@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.SEND_SMS"></uses-permission>
 
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -26,10 +27,13 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".ContactsActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".ConversationActivity"
+            android:screenOrientation="portrait"/>
 
-        <receiver android:name="receivers.IncomingSms">
-            <intent-filter>
+        <receiver android:name="receivers.IncomingSms" >
+            <intent-filter android:priority="1000">
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+
             </intent-filter>
         </receiver>
     </application>
