@@ -1,12 +1,16 @@
 package com.example.mariusz.securesms;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsManager;
 import android.util.Base64;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +22,7 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
+import adapter.ContactAdapter;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -36,6 +41,8 @@ public class NewMessageActivity extends AppCompatActivity {
     TextView keyET;
     @Bind(R.id.secretMessageET)
     EditText secretMessageET;
+    @Bind(R.id.add_from_contact)
+    ImageView add_from_contact;
 
 
 
@@ -67,6 +74,7 @@ public class NewMessageActivity extends AppCompatActivity {
                 String secretMessage = CryptoUtil.encryptClearText(key.toCharArray(), message);
                 smsManager.sendTextMessage(phoneNumber, null, secretMessage, null, null);
                 saveInDatabase(phoneNumber, secretMessage);
+                clearFields();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -74,6 +82,9 @@ public class NewMessageActivity extends AppCompatActivity {
         }
     }
 
+    private void clearFields(){
+        secretMessageET.setText("");
+    }
     private void saveInDatabase(String phoneNumber, String secretMessage){
         Contact contact = Contact.getContactByPhone(phoneNumber);
         if(contact==null){
@@ -81,5 +92,23 @@ public class NewMessageActivity extends AppCompatActivity {
         }
         Message msg = new Message(secretMessage, contact, true);
         msg.save();
+    }
+
+    @OnClick(R.id.add_from_contact)
+    public void add_from_contact(){
+        Intent intent = new Intent(this, ContactsActivity.class);
+        intent.putExtra("mode", "pick");
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode==1 && resultCode==RESULT_OK){
+            Contact selectedContact = data.getParcelableExtra("contact");
+            phoneNumberET.setText(selectedContact.getPhone());
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            String key = prefs.getString(selectedContact.getPhone(), "secret");
+            keyET.setText(key);
+        }
     }
 }

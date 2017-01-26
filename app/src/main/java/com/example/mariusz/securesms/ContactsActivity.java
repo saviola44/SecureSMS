@@ -22,11 +22,14 @@ import model.Contact;
  * Created by mariusz on 23.01.17.
  */
 public class ContactsActivity extends AppCompatActivity {
+    public static final int MODE_PICK = 1;
+    public static final int MODE_SHOW_CONVERSATION = 2;
     @Bind(R.id.contactListView)
     ListView contactListView;
     ContactAdapter contactAdapter;
     List<Contact> contacts;
 
+    int mode = MODE_SHOW_CONVERSATION;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,13 +39,27 @@ public class ContactsActivity extends AppCompatActivity {
         contactAdapter = new ContactAdapter(this, R.layout.row_contact_layout, contacts);
         contactListView.setAdapter(contactAdapter);
 
+        String modeStr = getIntent().getStringExtra("mode");
+        if(modeStr!=null && modeStr.equals("pick")){
+            mode = MODE_PICK;
+        }
+
+
         contactListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Contact contact = contacts.get(position);
-                Intent intent = new Intent(getApplicationContext(), ConversationActivity.class);
-                intent.putExtra("contact", contact);
-                startActivity(intent);
+                if(mode==MODE_SHOW_CONVERSATION) {
+                    Intent intent = new Intent(getApplicationContext(), ConversationActivity.class);
+                    intent.putExtra("contact", contact);
+                    startActivity(intent);
+                }
+                else{
+                    Intent intent = new Intent();
+                    intent.putExtra("contact", contact);
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }
             }
         });
     }
