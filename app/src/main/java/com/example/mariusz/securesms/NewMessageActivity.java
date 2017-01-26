@@ -51,6 +51,14 @@ public class NewMessageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_msg_layout);
         ButterKnife.bind(this);
+        Contact contact = getIntent().getParcelableExtra("contact");
+        if(contact!=null){
+            phoneNumberET.setText(contact.getPhone());
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            String key = prefs.getString(contact.getPhone(), "secret");
+            keyET.setText(key);
+            secretMessageET.requestFocus();
+        }
     }
 
 
@@ -73,8 +81,10 @@ public class NewMessageActivity extends AppCompatActivity {
             try {
                 String secretMessage = CryptoUtil.encryptClearText(key.toCharArray(), message);
                 smsManager.sendTextMessage(phoneNumber, null, secretMessage, null, null);
-                saveInDatabase(phoneNumber, secretMessage);
+                saveInDatabase(phoneNumber, secretMessage, key);
                 clearFields();
+                nextActivity(phoneNumber);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -82,13 +92,26 @@ public class NewMessageActivity extends AppCompatActivity {
         }
     }
 
+    private void nextActivity(String phoneNumber){
+        Intent intent = new Intent(this, ConversationActivity.class);
+        Contact contact = Contact.getContactByPhone(phoneNumber);
+        if(contact!=null) {
+            intent.putExtra("contact", contact);
+            startActivity(intent);
+            finish();
+        }
+    }
+
     private void clearFields(){
         secretMessageET.setText("");
     }
-    private void saveInDatabase(String phoneNumber, String secretMessage){
+    private void saveInDatabase(String phoneNumber, String secretMessage, String key){
         Contact contact = Contact.getContactByPhone(phoneNumber);
         if(contact==null){
             contact = new Contact(getString(R.string.unknown), phoneNumber);
+            contact.save();
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            prefs.edit().putString(phoneNumber, key).commit();
         }
         Message msg = new Message(secretMessage, contact, true);
         msg.save();

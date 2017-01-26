@@ -12,13 +12,13 @@
         android:paddingRight="8dp"
         android:paddingLeft="8dp"
         android:id="@+id/msgLayout"
-        android:background="#c6c6">
+        android:background="@drawable/circle_background_2">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="example message"
             android:layout_marginTop="2dp"
-            android:textSize="@dimen/text_size"
+            android:textSize="@dimen/big_text_size"
             android:id="@+id/message"/>
         <TextView
             android:layout_width="wrap_content"
@@ -26,7 +26,7 @@
             android:id="@+id/contactId"
             android:layout_marginTop="2dp"
             android:text="@string/contact_name"
-            android:textSize="@dimen/small_text_size"
+            android:textSize="@dimen/text_size"
             android:layout_below="@id/message" />
     </RelativeLayout>
 </RelativeLayout>

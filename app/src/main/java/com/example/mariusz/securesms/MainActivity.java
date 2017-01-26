@@ -14,8 +14,6 @@ public class MainActivity extends AppCompatActivity {
     Button addContactBtn;
     @Bind(R.id.newMessage)
     Button newMessageBtn;
-    @Bind(R.id.history)
-    Button historyBtn;
 
 
     @Override
